@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberns">
+	<resultMap type="member" id="memberResult">
+		<result property="m_no" column="m_no" />
+		<result property="m_id" column="m_id" />
+		<result property="m_password" column="m_password" />
+		<result property="m_nickname" column="m_nickname" />
+		<result property="m_email" column="m_email" />
+		<result property="m_grade" column="m_grade" />
+		<result property="m_ip" column="m_ip" />
+		<result property="m_date" column="m_date" />
+	</resultMap>
+	<insert id="memberJoin" parameterType="String" useGeneratedKeys="true" keyProperty="m_no">
+		insert into c_member (
+			m_id,
+			m_password,
+			m_nickname,
+			m_email,
+			m_grade,
+			m_ip,
+			m_date)		
+		values(
+			#{m_id},
+			#{m_password},
+			#{m_nickname},
+			#{m_email},
+			#{m_grade},
+			#{m_ip},
+			#{m_date}
+			);
+	</insert>
+	<select id="getUsersByID" resultType="member" parameterType="String">
+		select * from c_member where m_id = #{m_id}
+	</select>
+</mapper>
